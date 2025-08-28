@@ -18,7 +18,7 @@ class HomeScreen extends ConsumerWidget {
             pinned: true,
             flexibleSpace: FlexibleSpaceBar(
               title: Text(
-                'RapidPay',
+                'SafePay',
                 style: TextStyle(
                   color: Theme.of(context).colorScheme.onPrimary,
                 ),
@@ -95,27 +95,23 @@ class HomeScreen extends ConsumerWidget {
   void _showLanguageDialog(BuildContext context, WidgetRef ref) {
     showDialog(
       context: context,
-      builder:
-          (context) => AlertDialog(
-            title: const Text('Select Language'),
-            content: Column(
-              mainAxisSize: MainAxisSize.min,
-              children:
-                  AppLanguage.values
-                      .map(
-                        (lang) => ListTile(
-                          title: Text(lang.name),
-                          onTap: () {
-                            ref
-                                .read(languageProvider.notifier)
-                                .setLanguage(lang);
-                            Navigator.pop(context);
-                          },
-                        ),
-                      )
-                      .toList(),
-            ),
-          ),
+      builder: (context) => AlertDialog(
+        title: const Text('Select Language'),
+        content: Column(
+          mainAxisSize: MainAxisSize.min,
+          children: AppLanguage.values
+              .map(
+                (lang) => ListTile(
+                  title: Text(lang.name),
+                  onTap: () {
+                    ref.read(languageProvider.notifier).setLanguage(lang);
+                    Navigator.pop(context);
+                  },
+                ),
+              )
+              .toList(),
+        ),
+      ),
     );
   }
 }

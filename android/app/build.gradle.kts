@@ -8,7 +8,7 @@ plugins {
 android {
     namespace = "com.example.rapid_pay"
     compileSdk = flutter.compileSdkVersion
-    ndkVersion = flutter.ndkVersion
+    ndkVersion = "27.0.12077973" // Required for plugins: flutter_secure_storage, flutter_tts, path_provider_android, shared_preferences_android, sqflite_android
 
     compileOptions {
         sourceCompatibility = JavaVersion.VERSION_11

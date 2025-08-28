@@ -46,7 +46,7 @@ class _PaymentConfirmationScreenState extends State<PaymentConfirmationScreen>
   Widget build(BuildContext context) {
     return Scaffold(
       body: SafeArea(
-        child: Padding(
+        child: SingleChildScrollView(
           padding: const EdgeInsets.all(24.0),
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
@@ -68,12 +68,12 @@ class _PaymentConfirmationScreenState extends State<PaymentConfirmationScreen>
                     ? 'Payment Successful!'
                     : 'Payment Failed',
                 style: Theme.of(context).textTheme.headlineMedium?.copyWith(
-                  color:
-                      widget.transaction.status == TransactionStatus.success
-                          ? Theme.of(context).colorScheme.primary
-                          : Theme.of(context).colorScheme.error,
-                  fontWeight: FontWeight.bold,
-                ),
+                      color:
+                          widget.transaction.status == TransactionStatus.success
+                              ? Theme.of(context).colorScheme.primary
+                              : Theme.of(context).colorScheme.error,
+                      fontWeight: FontWeight.bold,
+                    ),
               ),
               const SizedBox(height: 24),
               _buildTransactionDetails(),

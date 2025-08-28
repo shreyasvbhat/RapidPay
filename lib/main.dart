@@ -102,12 +102,15 @@ class MyApp extends StatelessWidget {
         final themeMode = ref.watch(themeProvider);
 
         return MaterialApp(
-          title: 'RapidPay',
+          title: 'SafePay',
           theme: AppTheme.lightTheme,
           darkTheme: AppTheme.darkTheme,
           themeMode: themeMode,
-          builder: (context, child) =>
-              LoadingOverlay(child: GlobalScaffoldMessenger(child: child!)),
+          builder: (context, child) => LoadingOverlay(
+            child: GlobalScaffoldMessenger(
+              child: child!,
+            ),
+          ),
           initialRoute: AppRoutes.splash,
           onGenerateRoute: AppRoutes.generateRoute,
           debugShowCheckedModeBanner: false,
