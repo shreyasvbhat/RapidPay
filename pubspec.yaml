@@ -86,6 +86,9 @@ flutter:
 
   assets:
     - assets/animations/
+    - assets/animations/payment_failed.json
+    - assets/animations/payment_success.json
+    - assets/animations/splash_animation.json
     - assets/images/
     - assets/icons/
 

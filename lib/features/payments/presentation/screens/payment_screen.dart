@@ -3,6 +3,7 @@ import 'package:flutter/services.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:rapid_pay/core/routes/app_routes.dart';
 import 'package:rapid_pay/core/services/tts_service.dart';
+import 'package:rapid_pay/core/services/translation_service.dart';
 import 'package:rapid_pay/features/payments/domain/models/transaction.dart';
 import 'package:rapid_pay/shared/providers/language_provider.dart';
 
@@ -42,8 +43,11 @@ class _PaymentScreenState extends ConsumerState<PaymentScreen> {
 
       // Prepare payment details text
       final amount = double.parse(_amountController.text);
-      final message =
-          'Paying ${amount.toStringAsFixed(2)} rupees to ${_nameController.text}';
+      final message = TranslationService.getPaymentMessage(
+        amount.toStringAsFixed(2),
+        _nameController.text,
+        language.code,
+      );
 
       // Speak the payment details
       await tts.speak(message);

@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:shared_preferences/shared_preferences.dart';
+import 'package:rapid_pay/core/services/tts_service.dart';
 import 'package:rapid_pay/shared/providers/shared_preferences_provider.dart';
 
 enum AppLanguage {
@@ -38,9 +39,21 @@ class LanguageNotifier extends StateNotifier<AppLanguage> {
   Locale get locale => Locale(state.code);
 }
 
-final languageProvider = StateNotifierProvider<LanguageNotifier, AppLanguage>((
-  ref,
-) {
+final languageProvider =
+    StateNotifierProvider<LanguageNotifier, AppLanguage>((ref) {
   final prefs = ref.watch(sharedPreferencesProvider);
   return LanguageNotifier(prefs);
+});
+
+// Create a separate provider to handle TTS language updates
+final ttsLanguageHandler = Provider((ref) {
+  final tts = ref.watch(ttsServiceProvider);
+
+  ref.listen<AppLanguage>(languageProvider, (previous, next) {
+    if (previous?.code != next.code) {
+      tts.setLanguage(next.code);
+    }
+  });
+
+  return null;
 });

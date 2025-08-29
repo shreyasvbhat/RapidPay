@@ -100,6 +100,8 @@ class MyApp extends StatelessWidget {
       builder: (context, ref, _) {
         final language = ref.watch(languageProvider);
         final themeMode = ref.watch(themeProvider);
+        // Initialize TTS language handler
+        ref.watch(ttsLanguageHandler);
 
         return MaterialApp(
           title: 'SafePay',
